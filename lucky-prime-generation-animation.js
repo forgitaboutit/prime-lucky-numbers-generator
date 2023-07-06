@@ -205,7 +205,9 @@ $(function() {
 
   function getSuffix(number) {
 
-    if(number > 10 && number < 20) {
+    var last2Digits = Number(String(number).slice(-2));
+
+    if(last2Digits >= 11 && last2Digits <= 13) {
       return 'th';
     }
 
