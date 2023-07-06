@@ -12,4 +12,4 @@ This browser-based prime/lucky number generator displays all prime/lucky numbers
 * CSS
 	
 ## Setup
-To run this project, visit https://...
+To run this project, visit [https://...](https://forgitaboutit.github.io/generators-numbers-lucky-and-prime-together/lucky-prime-animation-generator.html)
