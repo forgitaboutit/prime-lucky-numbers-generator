@@ -1,0 +1,137 @@
+#luckyPrimeGeneratorMainContainer {
+  display: none;
+}
+
+#luckyPrimeGeneratorMainContainer a:link {
+	color: #0F52BA; /* Sapphire #OF52BA */
+}
+#luckyPrimeGeneratorMainContainer a:visited {
+	color: #0F52BA; /* Sapphire #OF52BA */
+}
+#luckyPrimeGeneratorMainContainer a:hover {
+	color: #0F52BA; /* Sapphire #OF52BA */
+}
+#luckyPrimeGeneratorMainContainer a:active {
+	color: #0F52BA; /* Sapphire #OF52BA */
+}
+
+#luckyPrimeGeneratorControlPanel {
+  width: 997px;
+	height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+	border: 1px solid white;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 0px;
+}
+
+#luckyPrimeGeneratorControlPanel > div {
+  float: left;
+	margin-right: 10px;
+}
+
+input[name=exclusiveUpperLimit] {
+	width: 70px; /* max value 100000 */
+}
+
+div#downloadJS, div#downloadCSS, div#downloadHTML {
+	float: right;
+	margin-top: 3px;
+}
+
+#controlPanel > div {
+  float: left;
+}
+div.controlPanelText {
+	color: orange;
+	margin-top: 3px;
+	margin-left: 10px;
+}
+div#controlPanelInput {
+	margin-left: 7px;
+}
+div#controlPanelButton {
+	margin-left: 7px;
+	margin-top: 3px;
+}
+div#controlPanelMessage {
+	color: red;
+}
+
+#bothGeneratorsContainer {
+	width: 999px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bothGeneratorsContainer > div {
+	float: left;
+	border: 1px solid white;
+}
+
+div#primeNumbersGeneratorContainer {
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #444444;
+}
+#primeNumbersGeneratorTitle {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+#primeNumbersGeneratorStatus {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+#primeNumberCandidatesContainer {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+.primeNumberCandidate {
+  float: left;
+  color: white;
+  margin-right: 5px;
+}
+
+div#luckyNumbersGeneratorContainer {
+	border-left: 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background: #444444;
+}
+#luckyNumbersGeneratorTitle {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  font-size: 24px;
+  text-align: center;
+}
+#luckyNumbersGeneratorStatus {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#luckyNumberCandidatesContainer {
+  width: 478px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+.luckyNumberCandidate {
+  float: left;
+  color: white;
+  margin-right: 5px;
+}
