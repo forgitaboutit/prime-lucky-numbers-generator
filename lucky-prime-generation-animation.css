@@ -1,3 +1,7 @@
+body {
+	color: black;
+}
+
 #luckyPrimeGeneratorMainContainer {
   display: none;
 }
