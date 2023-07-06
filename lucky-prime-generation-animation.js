@@ -151,7 +151,7 @@ $(function() {
     return true;
   }
 
-  // See js/inputFilter.js
+  // See input-filter.js
   setInputFilter(exclusiveUpperLimitInput[0], validateExclusiveUpperLimitInput);
 
   function addPrimeNumberCandidates() {
