@@ -37,11 +37,6 @@ input[name=exclusiveUpperLimit] {
 	width: 70px; /* max value 100000 */
 }
 
-div#downloadJS, div#downloadCSS, div#downloadHTML {
-	float: right;
-	margin-top: 3px;
-}
-
 #controlPanel > div {
   float: left;
 }
