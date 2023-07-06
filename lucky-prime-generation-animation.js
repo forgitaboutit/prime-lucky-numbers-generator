@@ -1,4 +1,4 @@
-/* 
+/*
  * Execute this function only after page has been loaded.
  *
  * Having variables/functions declared inside of this function
@@ -19,7 +19,7 @@ $(function() {
 
   // Milliseconds between rounds of elimination
   var msBetweenPasses = 1000;
- 
+
   // Milliseconds it takes to fade out eliminated numbers
   var msForFadeout = 1000;
 
@@ -35,104 +35,104 @@ $(function() {
   var luckyNumberGeneratorHalted = false;
   var luckyNumberGeneratorFinished = false;
 
-	var controlPanelMessageCtr = $('#controlPanelMessage');
+  var controlPanelMessageCtr = $('#controlPanelMessage');
   var listGenerationRestartButton = $('#listGenerationRestartButton');
 
   function prepareForRestart(primeOrLucky) {
 
-		console.log('prepareForRestart: ' + primeOrLucky);
+    console.log('prepareForRestart: ' + primeOrLucky);
 
-		// Update status
-		var statusText = 'restarting...';
-		console.log(primeOrLucky + ' number generator status: ' + statusText);
-		$('#' + primeOrLucky + 'NumbersGeneratorStatus').html('status: ' + statusText);
+    // Update status
+    var statusText = 'restarting...';
+    console.log(primeOrLucky + ' number generator status: ' + statusText);
+    $('#' + primeOrLucky + 'NumbersGeneratorStatus').html('status: ' + statusText);
 
-		// Set new exclusive upper limit
-		var newExclusiveUpperLimit = parseInt(exclusiveUpperLimitInput.val()); 
-		$('#' + primeOrLucky + 'ExclusiveUpperLimit').html(newExclusiveUpperLimit);
+    // Set new exclusive upper limit
+    var newExclusiveUpperLimit = parseInt(exclusiveUpperLimitInput.val());
+    $('#' + primeOrLucky + 'ExclusiveUpperLimit').html(newExclusiveUpperLimit);
 
-		$('#' + primeOrLucky + 'NumbersGeneratorTitlePrefix').html('generating list of ' + primeOrLucky + ' numbers less than ');
+    $('#' + primeOrLucky + 'NumbersGeneratorTitlePrefix').html('generating list of ' + primeOrLucky + ' numbers less than ');
 
-		$('.' + primeOrLucky + 'NumberCandidate').css('color', luckyPrimeNumbersColor);
+    $('.' + primeOrLucky + 'NumberCandidate').css('color', luckyPrimeNumbersColor);
 
     var candidates = $('.' + primeOrLucky + 'NumberCandidate');
 
-		var ctr;
+    var ctr;
 
-		if(newExclusiveUpperLimit < candidates.length) {
+    if(newExclusiveUpperLimit < candidates.length) {
 
-			for(ctr = newExclusiveUpperLimit; ctr <= candidates.length; ctr++) {
-				$('#' + primeOrLucky + 'NumberCandidate-' + ctr).remove();
-			}
-		}
+      for(ctr = newExclusiveUpperLimit; ctr <= candidates.length; ctr++) {
+        $('#' + primeOrLucky + 'NumberCandidate-' + ctr).remove();
+      }
+    }
 
-		if(newExclusiveUpperLimit > candidates.length) {
+    if(newExclusiveUpperLimit > candidates.length) {
 
-			var candidatesContainer = $('#' + primeOrLucky + 'NumberCandidatesContainer');
-			var candidate;
+      var candidatesContainer = $('#' + primeOrLucky + 'NumberCandidatesContainer');
+      var candidate;
 
-			for(ctr = candidates.length + 1; ctr < newExclusiveUpperLimit; ctr++) {
+      for(ctr = candidates.length + 1; ctr < newExclusiveUpperLimit; ctr++) {
 
-				candidate = $('<div>' + ctr + '</div>');
-				candidate.prop('id', primeOrLucky + 'NumberCandidate-' + ctr);
-				candidate.addClass(primeOrLucky + 'NumberCandidate');
-				candidate.data('visible', true);
-				candidatesContainer.append(candidate);
-			}
-		}
+        candidate = $('<div>' + ctr + '</div>');
+        candidate.prop('id', primeOrLucky + 'NumberCandidate-' + ctr);
+        candidate.addClass(primeOrLucky + 'NumberCandidate');
+        candidate.data('visible', true);
+        candidatesContainer.append(candidate);
+      }
+    }
 
-		$('#primeNumbersGeneratorContainer').css('height', $('#luckyNumbersGeneratorContainer').css('height'));
+    $('#primeNumbersGeneratorContainer').css('height', $('#luckyNumbersGeneratorContainer').css('height'));
 
-		candidates.data('visible', true);
-		candidates.css('opacity', '1');
-		candidates.css('visibility', 'visible')
+    candidates.data('visible', true);
+    candidates.css('opacity', '1');
+    candidates.css('visibility', 'visible')
 
-		// Set dots to original color
-		$('#' + primeOrLucky + 'NumbersEllipsesDot1').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
-		$('#' + primeOrLucky + 'NumbersEllipsesDot2').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
-		$('#' + primeOrLucky + 'NumbersEllipsesDot3').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
+    // Set dots to original color
+    $('#' + primeOrLucky + 'NumbersEllipsesDot1').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
+    $('#' + primeOrLucky + 'NumbersEllipsesDot2').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
+    $('#' + primeOrLucky + 'NumbersEllipsesDot3').css('color', primeOrLucky == 'prime' ? primeNumbersColor : luckyNumbersColor);
     $('.' + primeOrLucky + 'NumbersEllipsesDot').show();
-	}
+  }
 
   function clickedRestartButton(restartButton) {
 
-		var newExclusiveUpperLimit = parseInt(exclusiveUpperLimitInput.val());
+    var newExclusiveUpperLimit = parseInt(exclusiveUpperLimitInput.val());
 
-		if(newExclusiveUpperLimit <= 2) {
-			controlPanelMessageCtr.html('Exclusive upper limit must be greater than 2.');
-			return false;
-		}
+    if(newExclusiveUpperLimit <= 2) {
+      controlPanelMessageCtr.html('Exclusive upper limit must be greater than 2.');
+      return false;
+    }
     else if(newExclusiveUpperLimit == exclusiveUpperLimitInput.data('lastExclusiveUpperLimit')) {
-			controlPanelMessageCtr.html('Exclusive upper limit is already ' + newExclusiveUpperLimit + '.');
-			return false;
-		}
+      controlPanelMessageCtr.html('Exclusive upper limit is already ' + newExclusiveUpperLimit + '.');
+      return false;
+    }
     else {
-			console.log('new exclusive upper limit: ' + newExclusiveUpperLimit);
-			exclusiveUpperLimitInput.data('lastExclusiveUpperLimit', newExclusiveUpperLimit);
-	  }
-	  controlPanelMessageCtr.html('');
+      console.log('new exclusive upper limit: ' + newExclusiveUpperLimit);
+      exclusiveUpperLimitInput.data('lastExclusiveUpperLimit', newExclusiveUpperLimit);
+    }
+    controlPanelMessageCtr.html('');
 
     // Disable restart button until restart is complete
     $(restartButton).prop('disabled', true);
 
     if(primeNumberGeneratorFinished && luckyNumberGeneratorFinished) {
- 			
-			prepareForRestart('prime');
-			prepareForRestart('lucky');
 
-			primeNumberGeneratorFinished = false;
-			luckyNumberGeneratorFinished = false;
+      prepareForRestart('prime');
+      prepareForRestart('lucky');
 
-			setTimeout(function() {
+      primeNumberGeneratorFinished = false;
+      luckyNumberGeneratorFinished = false;
 
-				filterListToPrimeNumbers();
-				filterListToLuckyNumbers();
-				$(restartButton).prop('disabled', false);
+      setTimeout(function() {
 
-			}, 1000);
-		}
+        filterListToPrimeNumbers();
+        filterListToLuckyNumbers();
+        $(restartButton).prop('disabled', false);
+
+      }, 1000);
+    }
     else {
-			restartFlag = true;
+      restartFlag = true;
     }
   }
 
@@ -142,12 +142,12 @@ $(function() {
 
   function validateExclusiveUpperLimitInput(value) {
 
-		if(value.match(/^[0-9]{0,6}$/) === null) {
-			return false;
-		}
-		else if(value !== '' && parseInt(value) > exclusiveUpperLimitMaximumValue) {
-			return false;
-		}
+    if(value.match(/^[0-9]{0,6}$/) === null) {
+      return false;
+    }
+    else if(value !== '' && parseInt(value) > exclusiveUpperLimitMaximumValue) {
+      return false;
+    }
     return true;
   }
 
@@ -186,7 +186,7 @@ $(function() {
 
   // Highlights all numbers in common between sets
   function highlightLuckyPrimeIntersection() {
-      
+
     var primeNumberCandidate, luckyNumberCandidate;
 
     for(var i = 1; i < exclusiveUpperLimitInput.data('lastExclusiveUpperLimit'); i++) {
@@ -236,7 +236,7 @@ $(function() {
     primeNumbersGeneratorStatus.css('color', primeNumbersColor);
     var primeNumberCandidates = $('.primeNumberCandidate');
     var squareRootOfSizeOfList = Math.sqrt(exclusiveUpperLimitInput.data('lastExclusiveUpperLimit') - 1);
-  
+
     // Use these to animate ellipses during list generation
     var ellipsesHighlightedDot = 1;
 
@@ -305,9 +305,9 @@ $(function() {
         if(divisor > squareRootOfSizeOfList) {
 
           clearInterval(primeNumbersIntervalID);
-					primeNumberGeneratorFinished = true;
+          primeNumberGeneratorFinished = true;
 
-			    $('.primeNumbersEllipsesDot').hide();
+          $('.primeNumbersEllipsesDot').hide();
 
           setTimeout(function() {
 
@@ -333,7 +333,7 @@ $(function() {
         clearInterval(primeNumbersIntervalID);
         primeNumberGeneratorHalted = true;
 
-				prepareForRestart('prime');
+        prepareForRestart('prime');
 
         if(luckyNumberGeneratorHalted) {
 
@@ -368,7 +368,7 @@ $(function() {
     var luckyNumbersGeneratorStatus = $('#luckyNumbersGeneratorStatus');
     luckyNumbersGeneratorStatus.css('color', luckyNumbersColor);
     var numValuesRemainingInList = exclusiveUpperLimitInput.data('lastExclusiveUpperLimit') - 1;
-  
+
     // Use these to animate ellipses during list generation
     var ellipsesHighlightedDot = 1;
 
@@ -382,7 +382,7 @@ $(function() {
     var o;
 
     var position;
-    
+
     // Schedule this function to repeat every msBetweenPasses milliseconds
     var luckyNumbersIntervalID = setInterval(function() {
 
@@ -431,10 +431,10 @@ $(function() {
 
         // to count down from m to get next n value
         o = m;
-        
+
         // Determine next value for n
         luckyNumberCandidates.each(function() {
-          
+
           // Ignore 1 and numbers that have already been eliminated
           if($(this).html() != '1' && $(this).data('visible') == true) {
 
@@ -459,9 +459,9 @@ $(function() {
         if(n > numValuesRemainingInList) {
 
           clearInterval(luckyNumbersIntervalID);
-					luckyNumberGeneratorFinished = true;
+          luckyNumberGeneratorFinished = true;
 
-			    $('.luckyNumbersEllipsesDot').hide();
+          $('.luckyNumbersEllipsesDot').hide();
 
           setTimeout(function() {
 
@@ -479,7 +479,7 @@ $(function() {
 
             setTimeout(function() {
 
-              console.log('highlighting lucky/prime intersection ' + luckyPrimeNumbersColor + '...');      
+              console.log('highlighting lucky/prime intersection ' + luckyPrimeNumbersColor + '...');
 
               highlightLuckyPrimeIntersection();
 
@@ -495,19 +495,19 @@ $(function() {
         // Prevent another iteration from happening
         clearInterval(luckyNumbersIntervalID);
 
-				prepareForRestart('lucky');
+        prepareForRestart('lucky');
 
         luckyNumberGeneratorHalted = true;
 
         if(primeNumberGeneratorHalted || primeNumberGeneratorFinished) {
 
-					if(primeNumberGeneratorFinished) {
-						prepareForRestart('prime');
-					}
+          if(primeNumberGeneratorFinished) {
+            prepareForRestart('prime');
+          }
 
           console.log('prime number generator was ' +
-											(primeNumberGeneratorHalted ? 'halted' : 'finished') +
-											'...restarting from lucky number generator function...');
+                      (primeNumberGeneratorHalted ? 'halted' : 'finished') +
+                      '...restarting from lucky number generator function...');
 
           restartFlag = false;
           primeNumberGeneratorHalted = false;
@@ -529,13 +529,13 @@ $(function() {
   // Set exclusive upper limit in title text
   $('#primeExclusiveUpperLimit').html(exclusiveUpperLimitInput.val());
   $('#luckyExclusiveUpperLimit').html(exclusiveUpperLimitInput.val());
-	exclusiveUpperLimitInput.data('lastExclusiveUpperLimit', exclusiveUpperLimitInput.val());
+  exclusiveUpperLimitInput.data('lastExclusiveUpperLimit', exclusiveUpperLimitInput.val());
 
   // Generate HTML container for each number and append to main containers
   addPrimeNumberCandidates();
   addLuckyNumberCandidates();
 
-  // Fade in content 
+  // Fade in content
   $('#luckyPrimeGeneratorMainContainer').fadeIn(1000, function() {
     filterListToPrimeNumbers();
     filterListToLuckyNumbers();
